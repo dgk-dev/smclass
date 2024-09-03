@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부산 관광 명소</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .gallery-item {
+            background-color: white;
+            margin: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .gallery-item h2 {
+            margin: 15px 0 10px;
+            font-size: 1.5em;
+            color: #343a40;
+        }
+        .gallery-item p {
+            margin: 5px 0;
+            color: #6c757d;
+            font-size: 1em;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>부산 관광 명소</h1>
+    </header>
+
+    <div id="gallery"></div>
+
+    <footer>
+        <p>© 2024 부산 관광 명소. 모든 권리 보유.</p>
+    </footer>
+
+    <script>
+        const data = {
+            "items": {
+                "item": [
+                    {
+                        "galTitle": "부산 광안대교",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/46/3344546.jpg",
+                        "galPhotographyLocation": "부산광역시",
+                        "galPhotographyMonth": "202406"
+                    },
+                    {
+                        "galTitle": "부산불꽃축제",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/72/3097272.jpg",
+                        "galPhotographyLocation": "부산광역시 수영구 광안동",
+                        "galPhotographyMonth": "202311"
+                    },
+                    {
+                        "galTitle": "부산 부평족발골목",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/36/3047136.jpg",
+                        "galPhotographyLocation": "부산광역시 중구 부평동 1가",
+                        "galPhotographyMonth": "202310"
+                    },
+                    {
+                        "galTitle": "더베이101",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/10/3033810.jpg",
+                        "galPhotographyLocation": "부산광역시 해운대구 우동",
+                        "galPhotographyMonth": "202309"
+                    },
+                    {
+                        "galTitle": "영도대교",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/70/3033870.jpg",
+                        "galPhotographyLocation": "부산광역시 영도구 대교동1가",
+                        "galPhotographyMonth": "202309"
+                    },
+                    {
+                        "galTitle": "우암동 도시숲",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/94/3032894.jpg",
+                        "galPhotographyLocation": "부산광역시 남구 우암동",
+                        "galPhotographyMonth": "202309"
+                    },
+                    {
+                        "galTitle": "금정산성",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/03/3033803.jpg",
+                        "galPhotographyLocation": "부산광역시 금정구 금성동",
+                        "galPhotographyMonth": "202309"
+                    },
+                    {
+                        "galTitle": "재한유엔기념공원",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/49/3034349.jpg",
+                        "galPhotographyLocation": "부산광역시 남구 대연동",
+                        "galPhotographyMonth": "202309"
+                    },
+                    {
+                        "galTitle": "동아대학교 석당박물관",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/20/3033820.jpg",
+                        "galPhotographyLocation": "부산광역시 서구 부민동2가",
+                        "galPhotographyMonth": "202309"
+                    },
+                    {
+                        "galTitle": "부산광안대교와 마천루",
+                        "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/43/3042943.jpg",
+                        "galPhotographyLocation": "부산광역시, 광안대교",
+                        "galPhotographyMonth": "202301"
+                    }
+                ]
+            }
+        };
+
+        const gallery = document.getElementById('gallery');
+
+        data.items.item.forEach(item => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+
+            galleryItem.innerHTML = `
+                <img src="${item.galWebImageUrl}" alt="${item.galTitle}">
+                <h2>${item.galTitle}</h2>
+                <p>촬영 위치: ${item.galPhotographyLocation}</p>
+                <p>촬영 날짜: ${item.galPhotographyMonth}</p>
+            `;
+
+            gallery.appendChild(galleryItem);
+        });
+    </script>
+</body>
+</html>

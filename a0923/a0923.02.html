@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>객체 - 배열</title>
+</head>
+<body>
+  <script>
+    //변수선언에서는 개별적으로 출력해야함
+    var a = 10;
+    var b = 20;
+    var c = 30;
+    var d = 40;
+    var e = 50;
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    console.log(d);
+    console.log(e);
+
+    //배열 선언 - 반복문을 사용해서 출력이 가능함
+    var arr = new Array(5);
+    for(var i=0;i<5;i++){
+      arr[i] = i*10+10;
+      console.log(arr[i]);
+    }
+    
+    //배열 선언2
+    var cArr = [10,20,30,40,50];   //배열은[] 대괄호를 사용 , 각방의 이름은 [0],[1],[2] 식으로
+    for(var i=0;i<5;i++){
+      console.log(cArr[i]);
+    }
+
+
+  </script>
+
+
+</body>
+</html>

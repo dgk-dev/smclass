@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.top_black {
+  background: black;
+  width: 100%;
+  height: 35px;
+}
+
+.top_black_text {
+  color: white;
+  float: right;
+  width: 32%;
+  font-size: 15px;
+  margin-top:5px;
+}
+
+.top_black_text_list {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  margin-right: 150px;
+} 
+
+.top_black_text_list li {
+  font-weight:900;
+} 
+
+.top_nav_menu li:hover {
+  border-bottom:3px solid black !important;
+}
+
+.top_nav {
+  display: flex;
+}
+
+.top_nav_logo {
+  width: 100px;
+  height: 30px;
+  /* ../ : 현재폴더를 나와서, ./:현재폴더에서, /: root폴더에서  */
+  background: url(../images/ico_set.png) -320px -385px no-repeat;
+  background-size: 800px 800px;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.top_nav_menu {
+  width: 28%;
+  margin-left: 500px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.top_nav_menu ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+}
+
+.top_nav_icons {
+  display: flex;
+  position: relative;
+  left: 580px;
+  top: 15px;
+}
+
+.top_nav_icons .cart {
+  width: 40px;
+  height: 32px;
+  display: inline-block;
+  background: url('../images/ico_set.png') -584px -320px no-repeat;
+  background-size: 800px 800px;
+  margin-right:20px;
+}
+
+.top_nav_icons .find {
+  width: 40px;
+  height: 32px;
+  display: inline-block;
+  background: url('../images/ico_set.png') -628px -320px no-repeat;
+  background-size: 800px 800px;
+}
+
+.cart div{
+  font-size:10px;
+  margin-top:30px;
+  margin-left:0px;
+}
+
+.find div{
+  font-size:10px;
+  margin-top:30px;
+  margin-left:-2px;
+}

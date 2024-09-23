@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let num1 = Number(prompt("숫자를 입력하세요."));
+    let num2 = Number(prompt("숫자를 입력하세요."));
+    let num3 = Number(prompt("숫자를 입력하세요."));
+    // 제일값을 출력하시오.
+
+    // 배열을 이용한 제일값 출력하기
+    let numCompare = [num1, num2, num3]
+    numCompare.sort((a,b)=>a-b);
+    let result = numCompare[numCompare.length-1];
+    console.log(result);
+
+    // 삼항식을 사용해 최대값 출력하기
+    let result2 = (num1 > num2) ? (num1 > num3 ? num1 : num3) : (num2 > num3 ? num2 : num3);
+    console.log(result2);
+
+    // if를 사용해 최대값 출력하기
+    let result3;
+    if (num1 > num2){
+      if (num1 > num3){
+        result3 = num1;
+      } else {
+        result3 = num3;
+      }
+    } else {
+      if (num2 > num3){
+        result3 = num2;
+      } else {
+        result3 = num3;
+      }
+    }
+    console.log(result3);
+
+    // .max() 이용하기
+    let result4 = Math.max(num1, num2, num3);
+    console.log(result4);
+
+    // .min() 이용하기
+    let result5 = Math.min(num1, num2, num3);
+    console.log(result5);
+    
+    let pi = 3.1652;
+    document.write(Math.ceil(pi)+"<br>"); //올림
+    document.write(Math.floor(pi)+"<br>"); //버림
+    document.write(Math.round(pi)+"<br>"); //버림
+
+    let result6 = Math.round(pi * 100) / 100
+    document.write(result6);
+
+    // 50.2652 -> 소수점 2자리에서 반올림하시오.
+    let result7 = Math.round(50.2652 * 10) / 10
+    document.write("<br>"+result7);
+    
+  </script>
+</body>
+</html>

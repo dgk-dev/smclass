@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구구단</title>
+</head>
+<body>
+  <script>
+    // var lotto = parseInt(Math.random()*45)+1;
+    // document.write("로또번호 :"+lotto+"<br>");
+
+    var num = parseInt(Math.random()*100)+1;
+    // document.write("로또번호 :"+num+"<br>");
+    var i=0;
+    while(i<100){
+      var input = prompt((i+1)+"번째 트라이");
+      if(input<num){
+        alert("더느라");
+      }else if(input>num){
+        alert("좀 줄여라");
+      }else{
+        alert("ㅊㅊ");
+        break;
+      }
+      i++;
+    }
+
+    document.write("랜덤숫자 : "+num+"<br>");
+
+
+    //랜덤함수 : Math.random(); 0<= x < 1 실수값이 랜덤으로 생성됨
+    //0.0000000000000000 ~ 0.9999999999999999   소수점이 16개짜리로 랜덤
+    // document.write(parseInt(Math.random()*10));   // 이렇게하면 0-9까지 랜덤임
+    // document.write(parseInt(Math.random()*10)+1);   // 이렇게하면 1-10까지 랜덤임
+    // document.write(parseInt(Math.random()*45)+1);   // 이렇게하면 1-45까지 랜덤임
+
+
+
+
+  //   var i=0;  //초기값
+  //   while(i<10){   //조건식
+  //     document.write(i+"<br>");
+  //     i++;  //증감식
+  //   }
+  // document.write("<hr>");
+  //   //for(초기값;조건식;증감식)
+  //   for(var i=0;i<10;i++){   
+  //     document.write(i+"<br>");
+  //   }
+
+
+
+    //000
+    //001
+    //002
+    //...
+    //999
+    // for(var i=0;i<=9;i++){
+    //   for(var j=0;j<=9;j++){
+    //     for(var k=0;k<=9;k++){
+    //       document.write(i.toString()+j+k+"<br>");
+    //     }
+    //   }
+    // }
+
+
+
+
+    // for(var i=2;i<=9;i++){
+    //   document.write("["+i+"단]<br>")
+    //   for(var j=1;j<=9;j++){
+        
+    //     // if(j%2!=0){
+    //     //   continue;  //컨티뉴는 스킵하고 재실행
+    //     // }
+        
+    //     if(j==5){
+    //       break; //break는 완전 정지, 
+    //     }
+    //     document.write(i+" X "+j+" = " +(i*j)+"<br>");
+    //   }
+    // }
+  </script>
+
+
+</body>
+</html>

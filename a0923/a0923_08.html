@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //오늘날짜를 출력하시오.
+    let date = new Date();
+    let todayYear = date.getFullYear();
+    let todayMonth = date.getMonth() + 1;
+    let todayDate = date.getDate();
+    let todayDay = date.getDay();
+
+    //한글 요일 목록을 만든 후 getDay() 숫자에 맞는 것을 꺼내서 사용
+    let dayList = ["일", "월", "화", "수", "목", "금", "토"];
+    for (let i = 0; i <= 6; i++){
+      if (todayDay === i) {
+        todayDay = dayList[i];
+      }
+    }
+    document.write(`${todayYear}/${todayMonth}/${todayDate}/${todayDay}요일`);
+
+    //charAt을 이용해 result에 하나씩 더함
+    let userInput = prompt("5자리 숫자를 입력하세요.");
+    let result = 0;
+    for (let i = 0; i < 5; i++){
+      result += Number(userInput.charAt(i));    
+    }
+    document.write(result);
+
+  </script>
+</body>
+
+</html>

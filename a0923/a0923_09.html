@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #wrap {
+      width: 800px;
+      height: 3000px;
+      border: 3px solid black;
+      font-size: 30px;
+      text-align: center;
+      background: url(images/img_main_slide_20240612_2_pc.jpg)
+    }
+
+    #txt {
+      position: fixed;
+      border: 1px solid black;
+      width: 200px;
+      height: 100px;
+
+    }
+  </style>
+  <script>
+    function scrollBtn() {
+      alert("클릭")
+    }
+
+    //scrollTo-스크롤이동, scrollY-상하스크롤, scrollX-좌우스크롤
+    window.addEventListener('scroll', function () {
+      document.getElementById("txt").innerText = window.scrollY;
+      if(window.scrollY > 2000) {
+        document.getElementById("wrap").style.backgroundImage = "url('images/nw01.jpg')";
+      }
+    });
+  </script>
+</head>
+
+<body>
+
+  <div id="wrap" onclick="scrollBtn()">
+    <div id="txt">0</div>
+  </div>
+
+</body>
+
+</html>

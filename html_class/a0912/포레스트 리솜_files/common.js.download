@@ -1,0 +1,206 @@
+jQuery(document).ready(function(){
+
+  $('map').imageMapResize();
+
+	//variable select design
+	$.fn.extend({
+		bdStyle : function(options) {
+			this.each(function() {
+				var currentSelected = $(this).find(':selected');
+				$(this).after('<span class="bdSbox"><span class="bdSboxInner">'+currentSelected.text()+'</span></span>').css({position:'absolute', opacity:0,fontSize:$(this).next().css('font-size')});
+				var selectBoxSpan = $(this).next();
+				var selectBoxWidth = parseInt($(this).width()) - parseInt(selectBoxSpan.css('padding-left'));   
+				var selectBoxSpanInner = selectBoxSpan.find(':first-child');
+				selectBoxSpan.css({display:'inline-block'});
+				selectBoxSpanInner.css({width:selectBoxWidth, display:'inline'});
+				var selectBoxHeight = parseInt(selectBoxSpan.height()) + parseInt(selectBoxSpan.css('padding-top')) + parseInt(selectBoxSpan.css('padding-bottom'));
+				var selectWidth = $(this).siblings('.bdSbox').width();
+				$(this).css('width',selectWidth+'px');
+				$(this).height(selectBoxHeight).change(function(){
+					selectBoxSpanInner.text($(this).find(':selected').text()).parent().addClass('changed');
+					});
+				});
+		}
+	});$('.bdbox').bdStyle();
+
+
+	// resize
+	$(window).resize(function () {
+		// select
+		$('select').each(function () {
+			var selectWidth = $(this).siblings('span').width();
+			var selectHeight = $(this).siblings('span').height();
+			$(this).css('width',selectWidth+'px').css('height',selectHeight+'px');
+		});
+	});
+
+	$(".email_btn").fancybox({
+		'width' : 540,
+		'padding' : 0,
+		'scrolling': 'no',
+		'type'			: 'iframe',
+		'onComplete' : function() {
+			$('#fancybox-frame').load(function() { // wait for frame to load and then gets it's height
+			$('#fancybox-content').height($(this).contents().find('body').height());
+			$.fancybox.resize();
+			});
+		}
+	});
+
+	$(".clause").fancybox({
+		'width' : 540,
+		'padding' : 0,
+		'scrolling': 'no',
+		'type'			: 'iframe',
+		'onComplete' : function() {
+			$('#fancybox-frame').load(function() { // wait for frame to load and then gets it's height
+			$('#fancybox-content').height($(this).contents().find('body').height());
+			$.fancybox.resize();
+			});
+		}
+	});
+
+
+
+
+
+
+
+	
+	//모바일 header메뉴
+	$("a.m_btn").click(function(){
+		$("ul.mh_menu").slideToggle();
+	});
+
+	/*모바일 전체메뉴
+	 $("img.m_all_menu").click(function(){
+		$("div.m_gnb_list").slideToggle();
+	});*/
+
+	
+	var winHeight = $('#allwrap').height();
+
+	$("img.m_all_menu").click(function(){
+		
+		$('.m_gnb_list').slideToggle('slow', function() {
+			if ($('body').hasClass('arrow_down')) {
+				$('body').removeClass('arrow_down').addClass('arrow_up');
+				$('.arrow_up .menu_bg').css('display','none'); 
+			} else {
+				$('body').removeClass('arrow_up').addClass('arrow_down');
+				$('.arrow_down .menu_bg').css({'display':'block','height':winHeight});
+			}
+		});
+	});
+
+	$("p.close_menu").click(function(){
+		
+		$('.m_gnb_list').slideToggle('slow', function() {
+			if ($('body').hasClass('arrow_down')) {
+				$('body').removeClass('arrow_down').addClass('arrow_up');
+				$('.arrow_up .menu_bg').css('display','none'); 
+			} else {
+				$('body').removeClass('arrow_up').addClass('arrow_down');
+				$('.arrow_down .menu_bg').css({'display':'block','height':winHeight});
+			}
+		});
+	});
+
+	
+	//모바일네비게이션
+	$("ul.m_all_nav li dl dt a").each(function(){	
+		$(this).click(function(){
+			 if (!$(this).parent().parent("dl").hasClass("current")) {
+				$("ul.m_all_nav li dl").removeClass("current");
+				$("ul.m_all_nav li dl dd").hide();
+				$(this).parent().parent("dl").addClass("current");
+				$(this).parent().siblings("dd").show();
+			} else {
+				$(this).parent().parent("dl").removeClass("current");
+				$(this).parent().siblings("dd").hide();
+			}
+		});
+	});
+	
+	//FAQ
+	$("ul.faqList li dl dt a").each(function(){	
+		$(this).click(function(){
+			 if (!$(this).parent().parent("dl").hasClass("current")) {
+				$("ul.faqList li dl").removeClass("current");
+				$("ul.faqList li dl dd").hide();
+				$(this).parent().parent("dl").addClass("current");
+				$(this).parent().siblings("dd").show();
+			} else {
+				$(this).parent().parent("dl").removeClass("current");
+				$(this).parent().siblings("dd").hide();
+			}
+		});
+	});
+	
+	//회원가입펼처보기(이용약관)
+	$("div.agreeBox p.btn a").each(function(){	
+			$(this).click(function(){
+				var agreeHeight = $(this).parent().parent().siblings("article").find("div.agreeCont").outerHeight();
+				if (agreeHeight > 198){
+					if (!$(this).hasClass("on")) {
+						$(this).addClass("on");
+						$(this).parent().parent().siblings("article").css('height',agreeHeight);
+					} else {
+						$(this).removeClass("on");
+						$(this).parent().parent().siblings("article").css('height','208px');
+					}
+				}
+			});
+		});
+	
+});
+
+
+
+
+
+// Initialize.
+function init_tabs() {
+
+	// Does element exist?
+	if (!$('.tabs').length) {
+
+		// If not, exit.
+		return;
+	}
+
+	// Reveal initial content area(s).
+	$('div.tab_content_wrap').each(function() {
+		$(this).find('div.tab_content:first').show();
+	});
+
+	// Listen for click on tabs.
+	$('.tabs a').click(function() {
+
+		// If not current tab.
+		if (!$(this).hasClass('current')) {
+
+			// Change the current indicator.
+			$(this).addClass('current').parent('li').siblings('li').find('a.current').removeClass('current');
+
+			// Show target, hide others.
+			$($(this).attr('href')).show().siblings('div.tab_content').hide();
+		}
+
+		// Nofollow.
+		this.blur();
+		return false;
+	});
+}
+
+// Kick things off.
+$(document).ready(function() {
+	init_tabs();
+});
+
+
+
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}

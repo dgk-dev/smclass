@@ -1,0 +1,173 @@
+@charset "euc-kr";
+
+
+* {font-family:'Noto Sans KR', 'Dotum', 'Gulim', 'Arial', sans-serif;}
+
+@font-face { 
+font-family:'Noto Sans KR'; 
+font-style: normal; 
+font-weight: 100; 
+src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'), 
+   url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'), 
+   url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype'); 
+}
+
+@font-face { 
+font-family:'Noto Sans KR'; 
+font-style: normal; 
+font-weight: 300; 
+src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'), 
+  url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'), 
+  url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype'); 
+} 
+@font-face { 
+font-family:'Noto Sans KR'; 
+font-style: normal; 
+font-weight: 400; 
+src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'), 
+	 url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'), 
+	 url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype'); 
+}
+
+@font-face { 
+font-family:'Noto Sans KR'; 
+font-style: normal; 
+font-weight: 500; 
+src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'), 
+	 url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'), 
+	 url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype'); 
+} 
+
+@font-face { 
+font-family:'Noto Sans KR'; 
+font-style: normal; 
+font-weight: 600; 
+src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'), 
+	 url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'), 
+	 url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype'); 
+} 
+
+@font-face { 
+font-family:'Noto Sans KR'; 
+font-style: normal; 
+font-weight: 800; 
+src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'), 
+	 url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'), 
+	 url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype'); 
+} 
+
+@font-face {
+	font-family:'montserrat';
+	font-weight: 300;
+	src:url('../font/montserrat-light.eot');
+	src:local(『),  url('../font/montserrat-light.woff') format('woff');
+	src:url('../font/montserrat-light.eot?#iefix') format('embedded-opentype'),url('../font/montserrat-light.woff') format('woff'),url('../font/montserrat-light.ttf') format('truetype');url('../font/montserrat-light.svg#montserrat-light') format('svg');
+}
+
+
+@font-face {
+	font-family:'montserrat';
+	font-weight: 400;
+	src:url('../font/montserrat-regular.eot');
+	src:local(『),  url('../font/montserrat-regular.woff') format('woff');
+	src:url('../font/montserrat-regular.eot?#iefix') format('embedded-opentype'),url('../font/montserrat-regular.woff') format('woff'),url('../font/montserrat-regular.ttf') format('truetype');url('../font/montserrat-regular.svg#montserrat-regular') format('svg');
+}
+
+@font-face {
+	font-family:'montserrat';
+	font-weight: 500;
+	src:url('../font/montserrat-bold.eot');
+	src:local(『),  url('../font/montserrat-bold.woff') format('woff');
+	src:url('../font/montserrat-bold.eot?#iefix') format('embedded-opentype'),url('../font/montserrat-bold.woff') format('woff'),url('../font/montserrat-bold.ttf') format('truetype');url('../font/montserrat-bold.svg#montserrat-bold') format('svg');
+}
+
+@font-face {
+	font-family:'montserrat';
+	font-weight: 600;
+	src:url('../font/montserrat-semibold.eot');
+	src:local(『),  url('../font/montserrat-semibold.woff') format('woff');
+	src:url('../font/montserrat-semibold.eot?#iefix') format('embedded-opentype'),url('../font/montserrat-semibold.woff') format('woff'),url('../font/montserrat-semibold.ttf') format('truetype');url('../font/montserrat-semibold.svg#montserrat-semibold') format('svg');
+}
+
+
+@font-face {
+	font-family:'montserrat';
+	font-weight: 800;
+	src:url('../font/montserrat-extrabold.eot');
+	src:local(『),  url('../font/montserrat-extrabold.woff') format('woff');
+	src:url('../font/montserrat-extrabold.eot?#iefix') format('embedded-opentype'),url('../font/montserrat-extrabold.woff') format('woff'),url('../font/montserrat-extrabold.ttf') format('truetype');url('../font/montserrat-extrabold.svg#montserrat-extrabold') format('svg');
+}
+
+/* CSS reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:102%;
+	vertical-align:baseline;
+	background:transparent;
+	-webkit-text-size-adjust:auto;
+	font-family:'Noto Sans KR', 'Dotum', 'Gulim', 'Arial', sans-serif;
+	list-style:none;
+	line-height:100%;
+}
+em,address{font-style:normal;}
+hr{display:none}
+body{line-height:100%;word-break: break-all;}
+ol, ul{list-style:none;}
+blockquote, q{quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after{content:'';content:none;}
+
+ins{text-decoration:none;}
+del{text-decoration:line-through;}
+table{width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;word-break:break-all;}
+table th, table td{vertical-align:middle;}
+fieldset{margin:0;padding:0;border:0 none;}
+legend, caption	{display:none;width:0; height:0; font-size:0; line-height:0;}
+
+html, body,input,button{font-size:12px; color:#666;}
+
+a {color:#a7a7a7; text-decoration:none;}
+a:hover {color:#a7a7a7; text-decoration:none;}
+img,input{vertical-align:middle;}
+label{vertical-align:middle; font-size:14px;}
+select {height:25px; margin:0; border: 1px solid #dcdcdc; padding:0; font-size:13px; vertical-align:middle; color:#666;}
+textarea {border:1px solid #dcdcdc; color:#666; font-size:13px; line-height:18px; padding:5px; overflow-y:auto; resize:none;}
+strong {font-weight:600;}
+
+
+/* html5 reset */
+header, footer, section, article, aside, nav, hgroup, details, menu, figure, figcaption{display:block}
+
+.floatBox	{*zoom:1;}
+.floatBox:after	{content:"";display:block;clear:both;}
+.float01	{float:left;}
+.float02	{float:right;}
+
+
+input[type='text'],
+input[type='password'],
+input[type='file'],
+input[type='search'] {height:23px; line-height:20px; font-size:13px; margin:0; border:1px solid #dcdcdc; color:#666; padding:0 0 0 1%; vertical-align: middle;background:#fff;}
+input[type='checkbox'] {background:#fff; border:solid 1px #c9c9c9; height:16px; width:16px; -webkit-appearance:none; -webkit-border-radius:3px; padding:0; border:0 \0/IE8+9; margin-top:0; margin-top:2px \0/IE8+9;margin-bottom:0;}
+input[type='checkbox']:checked {background:#fff; border:solid 1px #c9c9c9; border:0 \0/IE8+9;}
+input[type='checkbox']:checked:after {content:""; display:block; width:8px; height:8px; background:#666; position:relative; top:3px; left:3px; -webkit-border-radius:0px;} 
+/*
+input[type='radio'] {background:#fff; border:solid 1px #c9c9c9; height:16px; width:16px; -webkit-appearance:none; -webkit-border-radius:10px; padding:0; border:0 \0/IE8+9; margin-top:0; margin-top:2px \0/IE8+9;}
+input[type='radio']:checked {background:#fff; border:solid 1px #c9c9c9; border:0 \0/IE8+9;} 
+input[type='radio']:checked:after {content:""; display:block; width:8px; height:8px; background:#666; position:relative; top:3px; left:3px; -webkit-border-radius:5px;} */
+input[type='button']	{padding:0;width:100%;}
+
+
+
+.mb--20{
+	margin-bottom:20px;
+}

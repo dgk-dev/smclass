@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script>
+    function calBtn(){
+      var length = document.getElementById("length").value;
+      var weight = document.getElementById("weight").value;
+      var length2 = length / 100;
+      var bmi = weight / (length2 * length2);
+      var bmi2 = bmi.toFixed(2);  // toFixed는 원하는 소수점 자리수를 입력하면 그만큽 보여줌
+      //bmi지수 데이터값
+      document.getElementById("bmiNumber").innerText = bmi2;
+      
+      var resultText = "";
+      // bmi지수 판별값
+      if(bmi2 >= 25){
+        resultText = "비만"
+      }else if(bmi2 >= 23){
+        resultText = "과체중"
+      }else if(bmi2 >= 18.5){
+        resultText = "정상"
+      }else{
+        resultText = "저체중"
+      }
+
+      document.getElementById("resultText").innerText = resultText;
+
+
+
+    }
+
+    </script>
+</head>
+<body>
+  <header class="pop-header">
+    <h1>나의 체질량지수는(BMI)</h1>
+    <a href="#" id="btnClose" name="btnClose">닫기</a>
+  </header>
+  <div class="body">
+    <div class="mesage_box">
+      <span>체질량지수는 자신의 몸무게(kg)를 키의 제곱(m)으로 나눈 값입니다.<br>
+        체질량지수는 근육량, 유전적 원인, 다른 개인적 차이를 반영하지 못하는 단점이 있음에도 불구하고<br>
+        조사자들이나 의료인들이 가장 많이 쓰는 방법 중 하나입니다.</span>
+    </div>
+    <div class="form">
+      <form action="#" name="bmiFrm" id="bmiFrm" method="get">
+        <label>신장</label>
+        <input type="text" name="length" id="length">
+        <span>cm</span>
+        <span class="dash">/</span>
+        <label>체중</label>
+        <input type="text" name="weight" id="weight">
+        <span>kg</span>
+        <span class="compute">
+          <input type="button" name="btnCalc" id="btnCalc" value="계산" onclick="calBtn()" >
+          <input type="reset" value="초기화">
+        </span>
+      </form>
+      <dl class="clearfix">
+        <dt>비만도 결과</dt>
+        <dd id="resultText"></dd>
+        <dt>BMI 지수</dt>
+        <dd id="bmiNumber"></dd>
+      </dl>
+      <ul>
+        <li>
+          <label>BMI</label>
+          <label class="dv1">18.5</label>
+          <label class="dv2">23</label>
+          <label>25.00</label>
+          <ul class="clearfix">
+            <li class="low-weight">저체중</li>
+            <li class="regular">정상</li>
+            <li class="overwhight">과체중</li>
+            <li class="obesity">비만</li>
+            <label>체중</label>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

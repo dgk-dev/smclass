@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <title>Document</title>
+  <script>
+    //제이쿼리 구문
+    $(function () {
+
+      //슬라이드닫힘
+      $(".btn2").click(function () {
+        $(".box").stop(); // 이전 애니메이션 중지
+        $(".box").slideUp(1000, "linear"); // 슬라이드 업
+      });
+
+      //슬라이드열림
+      $(".btn1").click(function () {
+        $(".box").stop(); // 이전 애니메이션 중지
+        $(".box").slideDown(1000, "linear"); // 슬라이드 다운
+      });
+
+      //페이드인
+      $(".btn3").on("click", function () {
+        $(".box").stop(); // 이전 애니메이션 중지
+        $(".box").fadeIn(1000, "swing"); // 페이드 인
+      });
+
+      // toggle 이벤트      
+      $(".btn4").on("click", function () {
+        $(".box").stop(); // 이전 애니메이션 중지
+        $(".box").slideToggle(500, "ease-in"); // 슬라이드 토글
+      });
+    });
+    //제이쿼리 구문
+  </script>
+  <style>
+    .content {
+      width: 400px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="btn1">슬라이드 열림</button>
+  <button class="btn2">슬라이드 닫힘</button>
+  <button class="btn3">페이드 인</button>
+  <button class="btn4">toggle</button>
+  <br>
+  <div class="box">
+    <div class="content">
+      이준석 개혁신당 의원의 ‘새벽 삽질’ 사진이 화제를 모은 가운데, 이에 대해 이 의원은 칠불사 주지 스님이 기념식수를 부탁해 땅을 판 것이라고 설명했다. 일부에서 추측하는 주술적인 의미도 없었다고
+      강조했다.
+      <br><br> 25일 이 의원은 세계일보와 인터뷰에서 지난 3월 1일 새벽 4시 무렵 경남 하동 칠불사에서 천하람 의원(당시 선대본부장)이 삽질하는 모습을 지켜본 사건에 대해 이같이 전했다. 이 의원은
+      김영선 당시 국민의힘 의원을 만난 뒤 “새벽 4시에 서울로 올라가려는데 명태균 씨와 주지 스님이 ‘기념식수를 부탁한다’며 나무를 준비해 놓고 차 앞에서 기다리고 있었다”라고 말했다.
+    </div>
+  </div>
+
+</body>
+
+</html>

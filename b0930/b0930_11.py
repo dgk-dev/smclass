@@ -1,39 +1,35 @@
-yahoo = int(input("숫자를 입력하세요."))
-
-if yahoo >= 50000:
-  print(f"50000원 :{yahoo//50000}")
-  yahoo %= 50000
-if yahoo >= 10000:
-  print(f"10000원 :{yahoo//10000}")
-  yahoo %= 10000
-if yahoo >= 5000:
-  print(f"5000원 :{yahoo//5000}")
-  yahoo %= 5000
-if yahoo >= 1000:
-  print(f"1000원 :{yahoo//1000}")
-  yahoo %= 1000
-if yahoo >= 500:
-  print(f"500원 :{yahoo//500}")
-  yahoo %= 500
-if yahoo >= 100:
-  print(f"100원 :{yahoo//100}")
-  yahoo %= 100
-if yahoo >= 50:
-  print(f"50원 :{yahoo//50}")
-  yahoo %= 50
-if yahoo >= 10:
-  print(f"10원 :{yahoo//10}")
+# 1759870
+# 9870
+# 590
 
 
-# str1 = input("문자를 입력하세요.")
-# a = len(str1)
 
-# if a==5:
-#   print("a는 5입니다.")
-# elif a==4:
-#   print("a는 4입니다.")
-# elif a==3:
-#   print("a는 3입니다.")
-# else:
-#   print("a는 2이하입니다.")
-  
+
+
+str1 = input("문자를 입력하세요.")
+a = len(str1)  # 문자의 길이 .length
+
+if a==5:
+  print("a는 5입니다.")
+elif a==4: # else if  
+  print("a는 4입니다.")
+elif a==3:
+  print("a는 3입니다.")
+else:
+  print("a 숫자는 2이하입니다.")    
+
+
+
+# money = 1759870
+# 50000,10000,5000,1000,500,100,50,10
+
+# money = 780
+# # 500 - 1
+# print("500원 동전개수 :",money//500)
+# # 100 - 2
+# print("100원 동전개수 :",(money%500)//100)
+# # 50 - 1
+# print("50원 동전개수 :",(money%500)%100//50)
+# # 10 - 3
+# print("10원 동전개수 :",((money%500)%100)%50//10)
+

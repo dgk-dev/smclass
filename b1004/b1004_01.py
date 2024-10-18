@@ -6,19 +6,15 @@ students = [
   [5,'김구',90,90,99]
 ]
 
-# 각 학생에 대해 합계와 평균 계산 후 추가
-for student in students:
-    scores = student[2:]  # 점수 부분 추출
-    total = sum(scores)
-    average = total / len(scores)
-    student.append(total)
-    student.append(average)
+# 합계,평균 추가해서 전체를 출력하시오.
+for s in students:
+  s.append(s[2]+s[3]+s[4])
+  s.append((s[2]+s[3]+s[4])/3)
 
-# 학생 정보 출력
-for i, student in enumerate(students):
-    student_id = i+1
-    name = student[1]
-    scores = student[2:-2]
-    total = student[-2]
-    average = student[-1]
-    print(f"학생번호: {student_id}, 이름: {name}, 합계: {total}, 평균: {average:.2f}")
+
+print("학번\t이름\t국어\t영어\t수학\t합계\t평균")
+print("-"*55)
+for s in students:
+  print(f"{s[0]}\t{s[1]}\t{s[2]}\t{s[3]}\t{s[4]}\t{s[5]}\t{s[6]:.2f}")
+
+

@@ -1,17 +1,22 @@
-stu_title = ['번호', '이름', '국어', '영어', '수학', '과학', '합계', '평균']
+stu_title = ['번호','이름','국어','영어','수학','과학','합계','평균','등수']
 stu_datas = [
-    ["홍길동", 100, 100, 100, 99],
-    ["유관순", 99, 99, 100, 99],
-    ["이순신", 100, 99, 98, 99],
-    ["김구", 80, 100, 100, 99],
-    ["김유신", 97, 89, 77, 99],
-    ["강규석", 97, 89, 77, 99]
-]
+ [1,'홍길동',100,100,100,99],
+ [2,'유관순',99,99,100,99],
+ [3,'이순신',100,99,98,99],
+ [4,'김구',80,100,90,99],
+ [5,'김유신',80,100,90,99]
+ ]
 
+# append - 합계,평균 추가해서 출력하시오.
+print("                  [ 학생성적 프로그램 ]")
+for s_t in stu_title:
+  print("{}".format(s_t),end='\t')
+print()
+print("-"*70)
 
-for id, stu_data in enumerate(stu_datas, start=1):
-  stu_sum = sum(stu_data[1:])
-  stu_data.insert(0, id)
-  stu_data.insert(len(stu_data)-1,stu_sum)
-  stu_data.append(stu_sum/len(stu_data[1:5])) # 합계 / 4
-  print("\t".join(map(str, stu_data)))
+for s in stu_datas:
+  s.append(s[2]+s[3]+s[4]+s[5])
+  s.append((s[2]+s[3]+s[4]+s[5])/4)
+  print("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{:.2f}".format(
+  s[0],s[1],s[2],s[3],s[4],s[5],s[6],s[7]))
+  ## 학번,이름, 국어, 영어, 수학, 과학, 합계, 평균

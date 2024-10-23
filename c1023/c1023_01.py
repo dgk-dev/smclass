@@ -28,7 +28,10 @@ except AttributeError as e:
     exit()
 
 # 상단타이틀 리스트 내포를 이용해 코드 줄임
+f = open('smclass/c1023/stock.csv','w',encoding='utf-8-sig')
+writer = csv.writer(f)
 st_list = [st.text.strip() for st in stocks[0].select("th")]
+writer.writerow(st_list)
 
 sto_list = []
 # 30개 주식정보를 csv파일로 저장하시오

@@ -12,7 +12,7 @@ sto_list2 = ['2', 'SK하이닉스', '3.25%', '190,600', '상승2,800', '+1.49%',
 # csv파일로 저장시 한글인코딩: utf-8-sig
 with open('smclass/c1023/a.csv','w',encoding='utf-8-sig', newline='') as f:
     writer = csv.writer(f)
-    writer.writerow(st_list)
+    writer.writerow(st_list) # 리스트 저장 가능
     writer.writerow(sto_list)
     writer.writerow(sto_list2)
 

@@ -1,15 +1,17 @@
 import requests
 from bs4 import BeautifulSoup
+import csv
+# email 발송관련
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
-# email 발송관련
 url = 'https://news.naver.com/main/ranking/popularDay.naver'
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"}
 res = requests.get(url,headers=headers)
 res.raise_for_status()
+
 # html 전체를 가져옴.
 soup = BeautifulSoup(res.text,"lxml")
 # 기준점
@@ -27,12 +29,14 @@ for i,r_list in enumerate(r_lists):
   print(rnews)
   f.write(f"{no},{rnews}\n")
 f.close()
+
 # 메일보내기
 smtpName = "smtp.naver.com"
 smtpPort = 587
+
 # 자신의 네이버메일주소,pw, 받는사람이메일주소
 sendEmail = "solicitor_@naver.com"
-pw = ""
+pw = "BW3P42LDCG9E"
 recvEmail = "kangmumu@gmail.com"
 title = "랭킹뉴스"
 content = "랭킹뉴스 파일을 첨부합니다."
@@ -41,6 +45,7 @@ msg["Subject"] = title
 msg["From"] = sendEmail
 msg["To"] = recvEmail
 msg.attach(MIMEText(content))
+
 # 파일첨부
 with open("news.txt",'rb') as f:
   attachment = MIMEApplication(f.read()) # 파일첨부
@@ -55,4 +60,5 @@ s.sendmail(sendEmail,recvEmail,msg.as_string())
 print("msg : ")
 print(msg.as_string())
 s.quit()
+
 print("메일이 발송되었습니다.!")

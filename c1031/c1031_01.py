@@ -1,8 +1,5 @@
 import func
 
-
-
-
 while True:
     # 로그인이 되어 있는 상태의 첫메뉴
     # print("[ 학생성적 프로그램 ]")
@@ -24,7 +21,8 @@ while True:
 
     elif choice == '3':
         pass
-        
+    
+
 
 
 

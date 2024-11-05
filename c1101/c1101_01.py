@@ -133,11 +133,11 @@ def update_member():
 def main():
     while True:
         data = member_count()
-        print("\n[ 커뮤니티 ]")
-        print(f"사원 수: {data[0]}, 부서번호: {data[1]}, 부서명: {data[2]}")
-        print("\n1. 로그인")
+        print(" [ 커뮤니티 ] ")
+        print("1. 로그인")
         print("2. 회원가입")
         print("3. 회원정보수정")
+        print("4. ")
         print("4. 종료")
         
         choice = input("원하는 번호를 입력하세요.>> ")

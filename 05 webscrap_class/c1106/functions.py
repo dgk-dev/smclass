@@ -158,30 +158,3 @@ def update_rank(conn):
         print("등수 처리 중 오류 발생:", e)
     finally:
         cur.close()
-
-
-def main():
-    conn = connects()
-    while True:
-        choice = screen()
-        if choice == "1":
-            input_student(conn)
-        elif choice == "2":
-            print_students(conn)
-        elif choice == "3":
-            search_student(conn)
-        elif choice == "4":
-            sort_students(conn)
-        elif choice == "5":
-            update_rank(conn)
-        elif choice == "0":
-            print("프로그램을 종료합니다.")
-            break
-        else:
-            print("잘못된 선택입니다. 다시 선택해주세요.")
-
-    conn.close()
-
-
-if __name__ == "__main__":
-    main()

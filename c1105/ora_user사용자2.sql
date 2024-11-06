@@ -344,6 +344,24 @@ select * from board2;
 
 commit;
 
---8,11,12,16,21,22,25,29,35,38,44,46,57
-delete board2 where bno=8;
+delete board2 where bno=11;
+delete board2 where bno=12;
+delete board2 where bno=16;
+delete board2 where bno=21;
+delete board2 where bno=22;
+delete board2 where bno=25;
+delete board2 where bno=29;
+delete board2 where bno=35;
+delete board2 where bno=38;
+delete board2 where bno=44;
+delete board2 where bno=46;
+delete board2 where bno=57;
+delete board2 where bno=61;
+delete board2 where bno=66;
+delete board2 where bno=74;
+delete board2 where bno=88;
+delete board2 where bno=95;
+delete board2 where bno=96;
+delete board2 where bno=98;
+
 

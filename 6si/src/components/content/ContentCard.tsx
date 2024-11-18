@@ -33,58 +33,87 @@ export function ContentCard({
     [date]
   );
 
-  const categoryColors = {
-    news: 'text-news hover:text-news-hover',
-    community: 'text-community hover:text-community-hover',
-    deals: 'text-deals hover:text-deals-hover',
+  const categoryConfig = {
+    news: {
+      color: 'text-accent-blue',
+      bgHover: 'hover:bg-accent-blue/5',
+    },
+    community: {
+      color: 'text-accent-green',
+      bgHover: 'hover:bg-accent-green/5',
+    },
+    deals: {
+      color: 'text-accent-red',
+      bgHover: 'hover:bg-accent-red/5',
+    },
   };
   
   return (
     <div 
-      className="group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-card transition-all hover:shadow-card-hover dark:bg-gray-800 dark:border-gray-700 cursor-pointer animate-fade-in"
+      className="group flex flex-col overflow-hidden bg-surface-50 border border-surface-200 rounded-2xl shadow-surface transition-all hover:shadow-surface-hover hover:border-surface-300 cursor-pointer animate-fade-in"
       onClick={onClick}
     >
-      <div className="aspect-video relative overflow-hidden rounded-t-xl">
+      <div className="relative aspect-[1.91/1] overflow-hidden">
         <Image
           src={thumbnail}
           alt={title}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {isNew && (
-          <span className="absolute top-3 right-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-medium animate-pulse">
-            NEW
-          </span>
+          <div className="absolute top-3 right-3">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-red text-white">
+              NEW
+            </span>
+          </div>
         )}
       </div>
 
-      <div className="flex flex-col flex-1 p-card">
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <h3 className="font-medium line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300">
+      <div className="flex flex-col flex-1 p-5">
+        <div className="flex items-start justify-between gap-4 mb-3">
+          <h3 className="text-lg font-medium text-surface-900 line-clamp-2 group-hover:text-brand-800 transition-colors">
             {title}
           </h3>
         </div>
 
-        <div className="mt-auto pt-4 flex items-center justify-between text-sm text-gray-500">
-          <div className="flex items-center space-x-2">
-            <span className={categoryColors[category]}>{source}</span>
-            <span title={formattedDate}>{timeAgo}</span>
+        <div className="mt-auto pt-4 flex items-center justify-between border-t border-surface-200">
+          <div className="flex items-center gap-3">
+            <span 
+              className={`text-sm font-medium ${categoryConfig[category].color}`}
+            >
+              {source}
+            </span>
+            <time 
+              dateTime={formattedDate}
+              className="text-sm text-surface-500"
+              title={formattedDate}
+            >
+              {timeAgo}
+            </time>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-4">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onLike?.();
               }}
-              className="flex items-center space-x-1 hover:text-red-500 transition-colors"
+              className={`group/btn flex items-center gap-1.5 ${
+                categoryConfig[category].bgHover
+              } rounded-full px-2.5 py-1.5 transition-colors`}
             >
               <Heart
-                size={16}
-                className={isLiked ? 'fill-red-500 text-red-500' : ''}
+                size={14}
+                className={`transition-colors ${
+                  isLiked ? 'fill-accent-red text-accent-red' : 'text-surface-500 group-hover/btn:text-accent-red'
+                }`}
               />
-              <span>{likes}</span>
+              <span className={`text-xs ${
+                isLiked ? 'text-accent-red' : 'text-surface-500 group-hover/btn:text-accent-red'
+              }`}>
+                {likes}
+              </span>
             </button>
 
             <button
@@ -92,13 +121,21 @@ export function ContentCard({
                 e.stopPropagation();
                 onBookmark?.();
               }}
-              className="flex items-center space-x-1 hover:text-blue-500 transition-colors"
+              className={`group/btn flex items-center gap-1.5 ${
+                categoryConfig[category].bgHover
+              } rounded-full px-2.5 py-1.5 transition-colors`}
             >
               <Bookmark
-                size={16}
-                className={isBookmarked ? 'fill-blue-500 text-blue-500' : ''}
+                size={14}
+                className={`transition-colors ${
+                  isBookmarked ? 'fill-accent-blue text-accent-blue' : 'text-surface-500 group-hover/btn:text-accent-blue'
+                }`}
               />
-              <span>{bookmarks}</span>
+              <span className={`text-xs ${
+                isBookmarked ? 'text-accent-blue' : 'text-surface-500 group-hover/btn:text-accent-blue'
+              }`}>
+                {bookmarks}
+              </span>
             </button>
           </div>
         </div>

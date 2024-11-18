@@ -120,26 +120,38 @@ export function ContentGrid({ category }: ContentGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      {items.map((item, index) => (
-        <div
-          key={item.id}
-          ref={index === items.length - 1 ? lastElementRef : undefined}
-        >
-          <ContentCard
-            {...item}
-            isNew={isNew(item.timestamp)}
-            isLiked={false} // TODO: Implement user interaction state
-            isBookmarked={false} // TODO: Implement user interaction state
-            onLike={() => handleLike(item.id)}
-            onBookmark={() => handleBookmark(item.id)}
-            onClick={() => handleClick(item.url)}
-          />
-        </div>
-      ))}
+    <div className="w-full">
+      <div className="flex flex-col divide-y divide-gray-100">
+        {items.map((item, index) => {
+          const isLastElement = index === items.length - 1;
+          return (
+            <div
+              key={item.id}
+              ref={isLastElement ? lastElementRef : null}
+            >
+              <ContentCard
+                {...item}
+                isNew={isNew(item.timestamp)}
+                isLiked={user?.likes?.includes(item.id)}
+                isBookmarked={user?.bookmarks?.includes(item.id)}
+                onLike={() => handleLike(item.id)}
+                onBookmark={() => handleBookmark(item.id)}
+                onClick={() => handleClick(item.url)}
+              />
+            </div>
+          );
+        })}
+      </div>
+
       {loading && (
-        <div className="col-span-full text-center py-4">
-          Loading...
+        <div className="flex justify-center p-4">
+          <div className="w-6 h-6 border-2 border-brand-500 border-t-transparent rounded-full animate-spin" />
+        </div>
+      )}
+
+      {error && (
+        <div className="text-center p-4 text-red-500">
+          콘텐츠를 불러오는데 실패했습니다.
         </div>
       )}
     </div>

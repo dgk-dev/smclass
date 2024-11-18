@@ -50,38 +50,38 @@ export function ContentCard({
   
   return (
     <div 
-      className="group flex flex-col overflow-hidden bg-white rounded-lg border border-gray-200 shadow-card transition-all hover:shadow-card-hover hover:border-gray-300 cursor-pointer animate-fade-in"
+      className="group flex overflow-hidden bg-white border-b border-gray-100 hover:bg-gray-50 cursor-pointer animate-fade-in transition-colors"
       onClick={onClick}
     >
-      <div className="relative aspect-[1.91/1] overflow-hidden">
+      {/* Thumbnail */}
+      <div className="relative w-48 h-32 shrink-0">
         <Image
           src={thumbnail}
           alt={title}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 768px) 120px, 192px"
         />
         {isNew && (
-          <div className="absolute top-3 right-3">
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-accent-red text-white">
+          <div className="absolute top-2 right-2">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-accent-red text-white">
               NEW
             </span>
           </div>
         )}
       </div>
 
+      {/* Content */}
       <div className="flex flex-col flex-1 p-4">
-        <div className="flex items-start justify-between gap-4 mb-3">
-          <h3 className="text-base font-medium text-gray-900 line-clamp-2 group-hover:text-brand-600 transition-colors">
+        <div className="flex items-start justify-between gap-4 mb-2">
+          <h3 className="text-lg font-medium text-gray-900 line-clamp-2 group-hover:text-brand-600 transition-colors">
             {title}
           </h3>
         </div>
 
-        <div className="mt-auto pt-4 flex items-center justify-between border-t border-gray-100">
+        <div className="mt-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span 
-              className={`text-sm font-medium ${categoryConfig[category].color}`}
-            >
+            <span className={`text-sm font-medium ${categoryConfig[category].color}`}>
               {source}
             </span>
             <time 
@@ -99,9 +99,7 @@ export function ContentCard({
                 e.stopPropagation();
                 onLike?.();
               }}
-              className={`group/btn flex items-center gap-1.5 ${
-                categoryConfig[category].bgHover
-              } rounded-full px-2 py-1 transition-colors`}
+              className={`group/btn flex items-center gap-1.5 ${categoryConfig[category].bgHover} rounded-full px-2 py-1 transition-colors`}
             >
               <Heart
                 size={14}
@@ -121,9 +119,7 @@ export function ContentCard({
                 e.stopPropagation();
                 onBookmark?.();
               }}
-              className={`group/btn flex items-center gap-1.5 ${
-                categoryConfig[category].bgHover
-              } rounded-full px-2 py-1 transition-colors`}
+              className={`group/btn flex items-center gap-1.5 ${categoryConfig[category].bgHover} rounded-full px-2 py-1 transition-colors`}
             >
               <Bookmark
                 size={14}

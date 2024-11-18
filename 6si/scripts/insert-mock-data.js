@@ -23,6 +23,19 @@ const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 // Helper function to generate past timestamp
 const getPastTime = (hoursAgo) => new Date(now.getTime() - hoursAgo * 60 * 60 * 1000).toISOString();
 
+// Store all generated IDs to ensure uniqueness
+const generatedIds = new Set();
+
+// Helper function to generate unique ID
+const generateUniqueId = () => {
+  let id;
+  do {
+    id = uuidv4();
+  } while (generatedIds.has(id));
+  generatedIds.add(id);
+  return id;
+};
+
 // News sources
 const newsSources = ['연합뉴스', '조선일보', '중앙일보', '동아일보', 'KBS', 'MBC', 'SBS', '한겨레', '매일경제', '한국경제', 'IT조선', '테크M', '블로터'];
 
@@ -44,14 +57,30 @@ const newsTopics = [
 // Generate mock news
 const generateMockNews = (count) => {
   const news = [];
+  const usedTitles = new Set(); // Track used titles to avoid duplicates
+  
   for (let i = 0; i < count; i++) {
-    const topic = newsTopics[random(0, newsTopics.length - 1)];
-    const template = topic.templates[random(0, topic.templates.length - 1)];
-    const title = template.replace('%s', topic.prefix);
+    let title;
+    let attempts = 0;
+    
+    // Try to generate a unique title
+    do {
+      const topic = newsTopics[random(0, newsTopics.length - 1)];
+      const template = topic.templates[random(0, topic.templates.length - 1)];
+      title = template.replace('%s', topic.prefix);
+      attempts++;
+      
+      // If we can't generate a unique title after 10 attempts, add a unique suffix
+      if (attempts > 10) {
+        title = `${title} (${i + 1})`;
+      }
+    } while (usedTitles.has(title) && attempts <= 10);
+    
+    usedTitles.add(title);
     const source = newsSources[random(0, newsSources.length - 1)];
     
     news.push({
-      id: uuidv4(),
+      id: generateUniqueId(),
       title,
       thumbnail: `https://picsum.photos/seed/news${i}/800/600`,
       source,
@@ -89,14 +118,30 @@ const communityTopics = [
 // Generate mock community posts
 const generateMockCommunity = (count) => {
   const posts = [];
+  const usedTitles = new Set(); // Track used titles to avoid duplicates
+  
   for (let i = 0; i < count; i++) {
-    const template = communityTemplates[random(0, communityTemplates.length - 1)];
-    const topic = communityTopics[random(0, communityTopics.length - 1)];
-    const title = template.replace('%s', topic);
+    let title;
+    let attempts = 0;
+    
+    // Try to generate a unique title
+    do {
+      const template = communityTemplates[random(0, communityTemplates.length - 1)];
+      const topic = communityTopics[random(0, communityTopics.length - 1)];
+      title = template.replace('%s', topic);
+      attempts++;
+      
+      // If we can't generate a unique title after 10 attempts, add a unique suffix
+      if (attempts > 10) {
+        title = `${title} (${i + 1})`;
+      }
+    } while (usedTitles.has(title) && attempts <= 10);
+    
+    usedTitles.add(title);
     const source = communitySources[random(0, communitySources.length - 1)];
     
     posts.push({
-      id: uuidv4(),
+      id: generateUniqueId(),
       title,
       thumbnail: `https://picsum.photos/seed/community${i}/800/600`,
       source,
@@ -134,14 +179,31 @@ const dealProducts = [
 // Generate mock deals
 const generateMockDeals = (count) => {
   const deals = [];
+  const usedTitles = new Set(); // Track used titles to avoid duplicates
+  
   for (let i = 0; i < count; i++) {
-    const template = dealTemplates[random(0, dealTemplates.length - 1)];
-    const product = dealProducts[random(0, dealProducts.length - 1)];
+    let title;
+    let attempts = 0;
+    
+    // Try to generate a unique title
+    do {
+      const template = dealTemplates[random(0, dealTemplates.length - 1)];
+      const product = dealProducts[random(0, dealProducts.length - 1)];
+      const source = dealSources[random(0, dealSources.length - 1)];
+      title = template.replace('%s', source).replace('%s', product);
+      attempts++;
+      
+      // If we can't generate a unique title after 10 attempts, add a unique suffix
+      if (attempts > 10) {
+        title = `${title} (${i + 1})`;
+      }
+    } while (usedTitles.has(title) && attempts <= 10);
+    
+    usedTitles.add(title);
     const source = dealSources[random(0, dealSources.length - 1)];
-    const title = template.replace('%s', source).replace('%s', product);
     
     deals.push({
-      id: uuidv4(),
+      id: generateUniqueId(),
       title,
       thumbnail: `https://picsum.photos/seed/deals${i}/800/600`,
       source,

@@ -4,6 +4,9 @@ import { useEffect, useRef, useCallback } from 'react';
 import { Content } from '@/types';
 import { ContentCard } from './ContentCard';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { useAuth } from '@/contexts/auth';
+import { createClient } from '@/lib/supabase/client';
+import { useRouter } from 'next/navigation';
 
 interface ContentGridProps {
   category?: 'news' | 'community' | 'deals';
@@ -11,6 +14,9 @@ interface ContentGridProps {
 
 export function ContentGrid({ category }: ContentGridProps) {
   const { items, loading, error, hasMore, loadMore } = useInfiniteScroll({ category });
+  const { user } = useAuth();
+  const router = useRouter();
+  const supabase = createClient();
   const observer = useRef<IntersectionObserver>();
   
   const lastElementRef = useCallback((node: HTMLDivElement) => {
@@ -37,6 +43,78 @@ export function ContentGrid({ category }: ContentGridProps) {
     return date > sixHoursAgo;
   }, []);
 
+  const handleLike = useCallback(async (contentId: string) => {
+    if (!user) {
+      router.push('/auth/login');
+      return;
+    }
+
+    const { data: existingLike } = await supabase
+      .from('user_interactions')
+      .select()
+      .eq('user_id', user.id)
+      .eq('content_id', contentId)
+      .eq('type', 'like')
+      .single();
+
+    if (existingLike) {
+      await supabase
+        .from('user_interactions')
+        .delete()
+        .eq('user_id', user.id)
+        .eq('content_id', contentId)
+        .eq('type', 'like');
+    } else {
+      await supabase
+        .from('user_interactions')
+        .insert({
+          user_id: user.id,
+          content_id: contentId,
+          type: 'like'
+        });
+    }
+    
+    router.refresh();
+  }, [user, router, supabase]);
+
+  const handleBookmark = useCallback(async (contentId: string) => {
+    if (!user) {
+      router.push('/auth/login');
+      return;
+    }
+
+    const { data: existingBookmark } = await supabase
+      .from('user_interactions')
+      .select()
+      .eq('user_id', user.id)
+      .eq('content_id', contentId)
+      .eq('type', 'bookmark')
+      .single();
+
+    if (existingBookmark) {
+      await supabase
+        .from('user_interactions')
+        .delete()
+        .eq('user_id', user.id)
+        .eq('content_id', contentId)
+        .eq('type', 'bookmark');
+    } else {
+      await supabase
+        .from('user_interactions')
+        .insert({
+          user_id: user.id,
+          content_id: contentId,
+          type: 'bookmark'
+        });
+    }
+    
+    router.refresh();
+  }, [user, router, supabase]);
+
+  const handleClick = useCallback((url: string) => {
+    window.open(url, '_blank');
+  }, []);
+
   if (error) {
     return <div className="text-red-500">Error: {error}</div>;
   }
@@ -51,6 +129,11 @@ export function ContentGrid({ category }: ContentGridProps) {
           <ContentCard
             {...item}
             isNew={isNew(item.timestamp)}
+            isLiked={false} // TODO: Implement user interaction state
+            isBookmarked={false} // TODO: Implement user interaction state
+            onLike={() => handleLike(item.id)}
+            onBookmark={() => handleBookmark(item.id)}
+            onClick={() => handleClick(item.url)}
           />
         </div>
       ))}

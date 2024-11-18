@@ -11,14 +11,11 @@ export interface User {
   readItems: string[];
 }
 
-export interface ContentCard {
-  thumbnail: string;
-  title: string;
-  source: string;
-  timestamp: string;
+export interface ContentCardProps extends Pick<Content, 'thumbnail' | 'title' | 'source' | 'timestamp' | 'category' | 'url' | 'likes' | 'bookmarks'> {
   isNew?: boolean;
-  category: Category;
-  url: string;
-  likes?: number;
-  bookmarks?: number;
+  isLiked?: boolean;
+  isBookmarked?: boolean;
+  onLike?: () => void;
+  onBookmark?: () => void;
+  onClick?: () => void;
 }

@@ -1,10 +1,11 @@
 "use client";
 
-import { ContentCard as ContentCardType } from '@/types';
+import { ContentCardProps } from '@/types';
 import Image from 'next/image';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { useMemo } from 'react';
+import { Heart, Bookmark } from 'lucide-react';
 
 export function ContentCard({
   thumbnail,
@@ -12,8 +13,16 @@ export function ContentCard({
   source,
   timestamp,
   isNew,
-  category
-}: ContentCardType) {
+  category,
+  url,
+  likes = 0,
+  bookmarks = 0,
+  isLiked = false,
+  isBookmarked = false,
+  onLike,
+  onBookmark,
+  onClick
+}: ContentCardProps) {
   const date = useMemo(() => new Date(timestamp), [timestamp]);
   const timeAgo = useMemo(
     () => formatDistanceToNow(date, { addSuffix: true, locale: ko }),
@@ -25,7 +34,10 @@ export function ContentCard({
   );
   
   return (
-    <div className="group relative overflow-hidden rounded-lg border bg-white shadow-sm transition-all hover:shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div 
+      className="group relative overflow-hidden rounded-lg border bg-white shadow-sm transition-all hover:shadow-md dark:bg-gray-800 dark:border-gray-700 cursor-pointer" 
+      onClick={onClick}
+    >
       <div className="aspect-video relative overflow-hidden">
         <Image
           src={thumbnail}
@@ -46,6 +58,28 @@ export function ContentCard({
           <time dateTime={formattedDate} title={formattedDate}>
             {timeAgo}
           </time>
+        </div>
+        <div className="flex items-center justify-between mt-2 text-sm text-gray-500">
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              onLike?.();
+            }}
+            className={`flex items-center gap-1 ${isLiked ? 'text-red-500' : ''}`}
+          >
+            <Heart size={16} className={isLiked ? 'fill-current' : ''} />
+            <span>{likes}</span>
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onBookmark?.();
+            }}
+            className={`flex items-center gap-1 ${isBookmarked ? 'text-blue-500' : ''}`}
+          >
+            <Bookmark size={16} className={isBookmarked ? 'fill-current' : ''} />
+            <span>{bookmarks}</span>
+          </button>
         </div>
       </div>
     </div>

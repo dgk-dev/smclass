@@ -10,11 +10,14 @@ export default function Home() {
         <div className="container mx-auto px-4 py-12 sm:py-16">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-              한국의 모든 콘텐츠를{" "}
+              대한민국의 모든 콘텐츠를{" "}
               <span className="text-brand-600">한눈에</span>
             </h1>
             <p className="text-lg text-gray-600">
-              뉴스, 커뮤니티, 핫딜까지 - 모든 인기 콘텐츠를 실시간으로 확인하세요
+              뉴스, 커뮤니티, 핫딜까지 - 지난 6시간 인기 콘텐츠를 실시간으로 확인하세요.
+            </p>
+            <p className="text-lg text-gray-600">
+              음란글, 정치글, 혐오글 등은 자체 AI 기술을 통해 필터링 됩니다. 
             </p>
           </div>
         </div>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Search } from 'lucide-react';
 
 export function SearchBar() {
   const [query, setQuery] = useState('');
@@ -21,27 +22,17 @@ export function SearchBar() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="검색어를 입력하세요"
-        className="w-full h-10 pl-4 pr-10 rounded-full border border-gray-300 focus:outline-none focus:border-gray-500 dark:bg-gray-800 dark:border-gray-700"
+        className="w-full h-10 pl-4 pr-10 rounded-full bg-gray-50 border border-gray-200 text-gray-900 text-sm
+          placeholder:text-gray-500
+          focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500
+          transition-colors"
       />
       <button
         type="submit"
-        className="absolute right-3 top-1/2 -translate-y-1/2"
+        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-500 transition-colors"
         aria-label="검색"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-5 h-5"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-          />
-        </svg>
+        <Search className="w-5 h-5" />
       </button>
     </form>
   );

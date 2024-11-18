@@ -7,28 +7,28 @@ import { CATEGORIES } from '@/lib/constants';
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 dark:bg-gray-900/95">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold">
+        <Link href="/" className="text-2xl font-bold text-gray-900">
           6si.kr
         </Link>
         
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-8">
           <Link 
             href="/section/news" 
-            className="text-[#0066FF] hover:text-[#0066FF]/80"
+            className="text-gray-600 hover:text-brand-600 transition-colors font-medium"
           >
             {CATEGORIES.news}
           </Link>
           <Link 
             href="/section/community" 
-            className="text-[#00CC00] hover:text-[#00CC00]/80"
+            className="text-gray-600 hover:text-brand-600 transition-colors font-medium"
           >
             {CATEGORIES.community}
           </Link>
           <Link 
             href="/section/deals" 
-            className="text-[#FF0000] hover:text-[#FF0000]/80"
+            className="text-gray-600 hover:text-brand-600 transition-colors font-medium"
           >
             {CATEGORIES.deals}
           </Link>

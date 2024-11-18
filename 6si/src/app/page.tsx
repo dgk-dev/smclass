@@ -8,7 +8,7 @@ export default function Home() {
       <section className="relative bg-gradient-to-b from-brand-50 to-white">
         <div className="container mx-auto px-4 py-16 sm:py-24">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 mb-6">
               한국의 모든 콘텐츠를{" "}
               <span className="text-brand-600">한눈에</span>
             </h1>
@@ -27,7 +27,7 @@ export default function Home() {
               실시간 인기 뉴스
             </h2>
             <a
-              href="#"
+              href="/section/news"
               className="text-brand-600 hover:text-brand-700 font-medium transition-colors"
             >
               더보기

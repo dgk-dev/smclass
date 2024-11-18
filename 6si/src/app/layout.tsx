@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen bg-white dark:bg-gray-900" suppressHydrationWarning>
+      <body className="min-h-screen bg-white" suppressHydrationWarning>
         <AuthProvider>
           <Header />
           <main className="flex min-h-screen flex-col">{children}</main>

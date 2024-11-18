@@ -32,54 +32,75 @@ export function ContentCard({
     () => format(date, 'yyyy-MM-dd HH:mm:ss'),
     [date]
   );
+
+  const categoryColors = {
+    news: 'text-news hover:text-news-hover',
+    community: 'text-community hover:text-community-hover',
+    deals: 'text-deals hover:text-deals-hover',
+  };
   
   return (
     <div 
-      className="group relative overflow-hidden rounded-lg border bg-white shadow-sm transition-all hover:shadow-md dark:bg-gray-800 dark:border-gray-700 cursor-pointer" 
+      className="group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-card transition-all hover:shadow-card-hover dark:bg-gray-800 dark:border-gray-700 cursor-pointer animate-fade-in"
       onClick={onClick}
     >
-      <div className="aspect-video relative overflow-hidden">
+      <div className="aspect-video relative overflow-hidden rounded-t-xl">
         <Image
           src={thumbnail}
           alt={title}
           fill
-          className="object-cover transition-transform group-hover:scale-105"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {isNew && (
-          <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+          <span className="absolute top-3 right-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-medium animate-pulse">
             NEW
           </span>
         )}
       </div>
-      <div className="p-4">
-        <h3 className="text-lg font-semibold line-clamp-2 mb-2">{title}</h3>
-        <div className="flex items-center justify-between text-sm text-gray-500">
-          <span>{source}</span>
-          <time dateTime={formattedDate} title={formattedDate}>
-            {timeAgo}
-          </time>
+
+      <div className="flex flex-col flex-1 p-card">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h3 className="font-medium line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300">
+            {title}
+          </h3>
         </div>
-        <div className="flex items-center justify-between mt-2 text-sm text-gray-500">
-          <button 
-            onClick={(e) => {
-              e.stopPropagation();
-              onLike?.();
-            }}
-            className={`flex items-center gap-1 ${isLiked ? 'text-red-500' : ''}`}
-          >
-            <Heart size={16} className={isLiked ? 'fill-current' : ''} />
-            <span>{likes}</span>
-          </button>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onBookmark?.();
-            }}
-            className={`flex items-center gap-1 ${isBookmarked ? 'text-blue-500' : ''}`}
-          >
-            <Bookmark size={16} className={isBookmarked ? 'fill-current' : ''} />
-            <span>{bookmarks}</span>
-          </button>
+
+        <div className="mt-auto pt-4 flex items-center justify-between text-sm text-gray-500">
+          <div className="flex items-center space-x-2">
+            <span className={categoryColors[category]}>{source}</span>
+            <span title={formattedDate}>{timeAgo}</span>
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onLike?.();
+              }}
+              className="flex items-center space-x-1 hover:text-red-500 transition-colors"
+            >
+              <Heart
+                size={16}
+                className={isLiked ? 'fill-red-500 text-red-500' : ''}
+              />
+              <span>{likes}</span>
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onBookmark?.();
+              }}
+              className="flex items-center space-x-1 hover:text-blue-500 transition-colors"
+            >
+              <Bookmark
+                size={16}
+                className={isBookmarked ? 'fill-blue-500 text-blue-500' : ''}
+              />
+              <span>{bookmarks}</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

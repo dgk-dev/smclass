@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <title>학생성적입력</title>
+  <title>학생성적수정</title>
   <style>
     * {margin:0; padding:0;}
     #main{text-align: center; margin-top: 50px}
@@ -17,22 +17,23 @@
 </head>
 <body>
   <div id='main'>
-    <h2><a href='/'>학생성적입력</a></h2>
-    <form action="{% url 'students:write' %}" method='post' name='sfrm'> 
+    <h2><a href='/'>학생성적수정</a></h2>
+    <form action="{% url 'students:modify' stu.name %}" method='post' name='sfrm'> 
     {% comment %} <form action="/students/write/" method='post' name='sfrm'> {% endcomment %}
       {% csrf_token %}
-      <label>이름</label>                                                             
-      <input type='text' name='name' class='name'><br>
+      <label>이름</label>
+      {{stu.name}}<br>                                                             
+      <input type='hidden' name='name' class='name' value='{{student.name}}'><br>
       <label>학과</label>
-      <input type='text' name='major'><br>
+      <input type='text' name='major' value='{{student.major}}'><br>
       <label>학년</label>
-      <input type='text' name='grade'><br>
+      <input type='text' name='grade' value='{{student.grade}}'><br>
       <label>나이</label>
-      <input type='text' name='age'><br>
+      <input type='text' name='age' value='{{student.age}}'><br>
       <label>성별</label>
-      <input type='radio' name='gender' id='M' value='M'>
+      <input type='radio' name='gender' id='M' value='M' {% if student.gender == 'M' %}checked{% endif %}>
       <label class='r' for='M'>남자</label>
-      <input type='radio' name='gender' id='F' value='F'>
+      <input type='radio' name='gender' id='F' value='F' {% if student.gender == 'F' %}checked{% endif %}>
       <label class='r' for='F'>여자</label>
       <br>
       <input type='button' value='저장' onclick='saveChk()'>
@@ -43,14 +44,8 @@
         location.href='/students/list/';
       }
       function saveChk(){
-        if ($(".name").val().length<2){
-          alert("이름은 2자리 이상 입력하셔야 합니다.");
-          $(".name").focus();
-          return false;
-        } else {
           alert("데이터를 전송합니다");
           document.sfrm.submit();
-        }
       }
     </script>
   </div>

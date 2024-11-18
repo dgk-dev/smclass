@@ -1,4 +1,77 @@
 from django.shortcuts import render, redirect
+from students.models import Student
+
+def delete(request,name):
+  qs = Student.objects.filter(name=name)
+  if qs.exists():
+    qs.delete()
+  return redirect('students:list')
+
+# 학생수정페이지 - url 매개변수로 데이터값을 전달받음.
+def modify(request,name):
+  if request.method == 'GET':
+    print("modify 이름정보: ",name)
+    # 1개 데이터 가져오기
+    qs = Student.objects.filter(name=name)
+    if not qs.exists():
+      return redirect('students:list')
+    context = {'stu':qs[0]}
+    return render(request,'update.html',context)
+  elif request.method == 'POST':
+    print("POST 호출")
+    
+    # 데이터 수정
+    qs = Student.objects.filter(name=name)
+    if not qs.exists():
+      return redirect('students:list')
+      
+    major = request.POST['major']
+    grade = request.POST['grade']
+    age = request.POST['age']
+    gender = request.POST['gender']
+    print("수정데이터 : ",name,major,grade,age,gender)
+    
+    # 데이터 업데이트
+    try:
+      qs.update(major=major,grade=grade,age=age,gender=gender)
+      return redirect('students:view', name=name)
+    except:
+      return redirect('students:list')
+
+# 학생수정페이지2 - 파라미터
+def modify2(request):
+  name = request.GET.get('name')
+  print("modify2 이름정보: ",name)
+  qs = Student.objects.filter(name=name)
+  context = {'stu':qs[0]}
+  return render(request,'update.html',context)
+
+  # 학생수정페이지3 - AppName
+def modify3(request,name):
+  print("modify3 이름정보: ",name)
+  qs = Student.objects.filter(name=name)
+  context = {'stu':qs[0]}
+  return render(request,'update.html',context)
+
+# 학생상세페이지
+def view(request,name):
+  print("이름정보 : ",name)
+  qs = Student.objects.filter(name=name)
+  if not qs.exists():
+    return redirect('students:list')
+  context = {'stu':qs[0]}
+  return render(request,'view.html',context)
+
+  # qs = Student.objects.get(name=name) # 없을경우 에러
+  # qs = get_object_or_404(Student,name=name) # 없을경우 404
+
+# 학생 리스트
+def list(request):
+  qs = Student.objects.all()
+  context = {
+    "slist" : qs if qs.exists() else []
+  }
+  return render(request, 'list.html', context)
 
 # 학생입력페이지 호출
 def write(request):
@@ -14,6 +87,9 @@ def write(request):
     age = request.POST['age']
     gender = request.POST['gender']
     print("입력데이터 : ",name,major,grade,age,gender)
+    # DB저장
+    Student.objects.create(name=name,major=major,grade=grade,age=age,gender=gender)
+    print("1명 학생저장")
     return redirect("/")
 
 # # 학생입력저장

@@ -1,8 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
-
+# 메인페이지
 def index(request):
-    return render(request, "index.html")
-
-
+  return render(request,'index.html')

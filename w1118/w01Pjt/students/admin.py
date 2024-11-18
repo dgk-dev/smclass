@@ -1,3 +1,8 @@
 from django.contrib import admin
+from students.models import Student
 
-# Register your models here.
+# admin 페이지에서 3개의 카테고리를 보여줌.
+class StudentAdmin(admin.ModelAdmin):
+  list_display = ['name','major','grade','age','gender']
+
+admin.site.register(Student,StudentAdmin)

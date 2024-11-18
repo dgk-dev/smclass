@@ -21,6 +21,7 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+    domains: ['via.placeholder.com'],
   },
 };
 

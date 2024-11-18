@@ -36,21 +36,21 @@ export function ContentCard({
   const categoryConfig = {
     news: {
       color: 'text-accent-blue',
-      bgHover: 'hover:bg-accent-blue/5',
+      bgHover: 'hover:bg-brand-50',
     },
     community: {
       color: 'text-accent-green',
-      bgHover: 'hover:bg-accent-green/5',
+      bgHover: 'hover:bg-brand-50',
     },
     deals: {
       color: 'text-accent-red',
-      bgHover: 'hover:bg-accent-red/5',
+      bgHover: 'hover:bg-brand-50',
     },
   };
   
   return (
     <div 
-      className="group flex flex-col overflow-hidden bg-surface-50 border border-surface-200 rounded-2xl shadow-surface transition-all hover:shadow-surface-hover hover:border-surface-300 cursor-pointer animate-fade-in"
+      className="group flex flex-col overflow-hidden bg-white rounded-lg border border-gray-200 shadow-card transition-all hover:shadow-card-hover hover:border-gray-300 cursor-pointer animate-fade-in"
       onClick={onClick}
     >
       <div className="relative aspect-[1.91/1] overflow-hidden">
@@ -63,21 +63,21 @@ export function ContentCard({
         />
         {isNew && (
           <div className="absolute top-3 right-3">
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-red text-white">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-accent-red text-white">
               NEW
             </span>
           </div>
         )}
       </div>
 
-      <div className="flex flex-col flex-1 p-5">
+      <div className="flex flex-col flex-1 p-4">
         <div className="flex items-start justify-between gap-4 mb-3">
-          <h3 className="text-lg font-medium text-surface-900 line-clamp-2 group-hover:text-brand-800 transition-colors">
+          <h3 className="text-base font-medium text-gray-900 line-clamp-2 group-hover:text-brand-600 transition-colors">
             {title}
           </h3>
         </div>
 
-        <div className="mt-auto pt-4 flex items-center justify-between border-t border-surface-200">
+        <div className="mt-auto pt-4 flex items-center justify-between border-t border-gray-100">
           <div className="flex items-center gap-3">
             <span 
               className={`text-sm font-medium ${categoryConfig[category].color}`}
@@ -86,14 +86,14 @@ export function ContentCard({
             </span>
             <time 
               dateTime={formattedDate}
-              className="text-sm text-surface-500"
+              className="text-sm text-gray-500"
               title={formattedDate}
             >
               {timeAgo}
             </time>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -101,16 +101,16 @@ export function ContentCard({
               }}
               className={`group/btn flex items-center gap-1.5 ${
                 categoryConfig[category].bgHover
-              } rounded-full px-2.5 py-1.5 transition-colors`}
+              } rounded-full px-2 py-1 transition-colors`}
             >
               <Heart
                 size={14}
                 className={`transition-colors ${
-                  isLiked ? 'fill-accent-red text-accent-red' : 'text-surface-500 group-hover/btn:text-accent-red'
+                  isLiked ? 'fill-accent-red text-accent-red' : 'text-gray-400 group-hover/btn:text-accent-red'
                 }`}
               />
               <span className={`text-xs ${
-                isLiked ? 'text-accent-red' : 'text-surface-500 group-hover/btn:text-accent-red'
+                isLiked ? 'text-accent-red' : 'text-gray-500 group-hover/btn:text-accent-red'
               }`}>
                 {likes}
               </span>
@@ -123,16 +123,16 @@ export function ContentCard({
               }}
               className={`group/btn flex items-center gap-1.5 ${
                 categoryConfig[category].bgHover
-              } rounded-full px-2.5 py-1.5 transition-colors`}
+              } rounded-full px-2 py-1 transition-colors`}
             >
               <Bookmark
                 size={14}
                 className={`transition-colors ${
-                  isBookmarked ? 'fill-accent-blue text-accent-blue' : 'text-surface-500 group-hover/btn:text-accent-blue'
+                  isBookmarked ? 'fill-accent-blue text-accent-blue' : 'text-gray-400 group-hover/btn:text-accent-blue'
                 }`}
               />
               <span className={`text-xs ${
-                isBookmarked ? 'text-accent-blue' : 'text-surface-500 group-hover/btn:text-accent-blue'
+                isBookmarked ? 'text-accent-blue' : 'text-gray-500 group-hover/btn:text-accent-blue'
               }`}>
                 {bookmarks}
               </span>

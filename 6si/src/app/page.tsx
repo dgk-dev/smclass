@@ -1,101 +1,125 @@
-import { CATEGORIES } from '@/lib/constants';
-import Link from 'next/link';
+import { ContentCard } from "@/components/content/ContentCard";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-surface-50">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative overflow-hidden border-b border-surface-200">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4F46E5_0%,#10B981_50%,#DC2626_100%)] opacity-5" />
-        <div className="container mx-auto px-4 py-section relative">
+      <section className="relative bg-gradient-to-b from-brand-50 to-white">
+        <div className="container mx-auto px-4 py-16 sm:py-24">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold tracking-tight mb-6">
-              6시간마다 업데이트되는{' '}
-              <span className="relative">
-                <span className="relative z-10 bg-gradient-to-r from-brand-700 to-brand-900 bg-clip-text text-transparent">
-                  최신 소식과 정보
-                </span>
-                <span className="absolute -bottom-2 left-0 right-0 h-3 bg-brand-100 -rotate-1" />
-              </span>
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+              한국의 모든 콘텐츠를{" "}
+              <span className="text-brand-600">한눈에</span>
             </h1>
-            <p className="text-lg text-surface-600 mb-8">
-              뉴스, 커뮤니티, 할인정보를 한눈에 확인하세요
+            <p className="text-lg text-gray-600 mb-8">
+              뉴스, 커뮤니티, 핫딜까지 - 모든 인기 콘텐츠를 실시간으로 확인하세요
             </p>
-            <div className="inline-flex items-center gap-2 text-sm text-surface-500">
-              <span className="inline-block w-2 h-2 rounded-full bg-accent-green animate-pulse" />
-              실시간 업데이트 중
-            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="container mx-auto px-4 py-section">
-        {/* News Section */}
-        <section className="mb-section animate-slide-up">
-          <div className="flex justify-between items-center mb-8">
-            <div className="space-y-1">
-              <h2 className="text-2xl font-bold text-surface-900">
-                {CATEGORIES.news}
-              </h2>
-              <p className="text-surface-500">오늘의 주요 뉴스를 확인하세요</p>
-            </div>
-            <Link 
-              href="/section/news"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-100 hover:bg-surface-200 text-surface-900 transition-colors"
+      {/* News Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-gray-900">
+              실시간 인기 뉴스
+            </h2>
+            <a
+              href="#"
+              className="text-brand-600 hover:text-brand-700 font-medium transition-colors"
             >
               더보기
-              <span className="transition-transform group-hover:translate-x-0.5">→</span>
-            </Link>
+            </a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Content cards will be added here */}
+            <Suspense fallback={<div>Loading...</div>}>
+              {/* News Cards */}
+              <ContentCard
+                thumbnail="https://via.placeholder.com/600x314"
+                title="삼성전자, 차세대 메모리 반도체 개발 성공"
+                source="서울경제"
+                timestamp={new Date().toISOString()}
+                category="news"
+                url="#"
+                isNew={true}
+                likes={128}
+                bookmarks={45}
+              />
+              {/* Add more news cards */}
+            </Suspense>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Community Section */}
-        <section className="mb-section animate-slide-up [animation-delay:100ms]">
-          <div className="flex justify-between items-center mb-8">
-            <div className="space-y-1">
-              <h2 className="text-2xl font-bold text-surface-900">
-                {CATEGORIES.community}
-              </h2>
-              <p className="text-surface-500">실시간 인기 게시글을 확인하세요</p>
-            </div>
-            <Link 
-              href="/section/community"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-100 hover:bg-surface-200 text-surface-900 transition-colors"
+      {/* Community Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-gray-900">
+              인기 커뮤니티 글
+            </h2>
+            <a
+              href="#"
+              className="text-brand-600 hover:text-brand-700 font-medium transition-colors"
             >
               더보기
-              <span className="transition-transform group-hover:translate-x-0.5">→</span>
-            </Link>
+            </a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Content cards will be added here */}
+            <Suspense fallback={<div>Loading...</div>}>
+              {/* Community Cards */}
+              <ContentCard
+                thumbnail="https://via.placeholder.com/600x314"
+                title="오늘 서울 날씨 장난 아니네요"
+                source="클리앙"
+                timestamp={new Date().toISOString()}
+                category="community"
+                url="#"
+                isNew={true}
+                likes={256}
+                bookmarks={89}
+              />
+              {/* Add more community cards */}
+            </Suspense>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Deals Section */}
-        <section className="mb-section animate-slide-up [animation-delay:200ms]">
-          <div className="flex justify-between items-center mb-8">
-            <div className="space-y-1">
-              <h2 className="text-2xl font-bold text-surface-900">
-                {CATEGORIES.deals}
-              </h2>
-              <p className="text-surface-500">오늘의 특가 상품을 확인하세요</p>
-            </div>
-            <Link 
-              href="/section/deals"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-100 hover:bg-surface-200 text-surface-900 transition-colors"
+      {/* Deals Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-gray-900">
+              오늘의 핫딜
+            </h2>
+            <a
+              href="#"
+              className="text-brand-600 hover:text-brand-700 font-medium transition-colors"
             >
               더보기
-              <span className="transition-transform group-hover:translate-x-0.5">→</span>
-            </Link>
+            </a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Content cards will be added here */}
+            <Suspense fallback={<div>Loading...</div>}>
+              {/* Deals Cards */}
+              <ContentCard
+                thumbnail="https://via.placeholder.com/600x314"
+                title="Apple 에어팟 프로 2세대 특가"
+                source="뽐뿌"
+                timestamp={new Date().toISOString()}
+                category="deals"
+                url="#"
+                isNew={true}
+                likes={512}
+                bookmarks={167}
+              />
+              {/* Add more deals cards */}
+            </Suspense>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
   );
 }

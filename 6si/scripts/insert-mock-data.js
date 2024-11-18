@@ -15,6 +15,8 @@ if (!supabaseUrl || !supabaseKey) {
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+const now = new Date();
+
 const mockNews = [
   {
     id: uuidv4(),
@@ -23,9 +25,10 @@ const mockNews = [
     source: '테크뉴스',
     category: 'news',
     url: 'https://example.com/news1',
-    timestamp: new Date().toISOString(),
+    timestamp: now.toISOString(),
     likes: 0,
     bookmarks: 0,
+    created_at: now.toISOString(),
   },
   {
     id: uuidv4(),
@@ -34,9 +37,10 @@ const mockNews = [
     source: '전자신문',
     category: 'news',
     url: 'https://example.com/news2',
-    timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    timestamp: new Date(now.getTime() - 2 * 60 * 60 * 1000).toISOString(),
     likes: 0,
     bookmarks: 0,
+    created_at: now.toISOString(),
   },
   {
     id: uuidv4(),
@@ -45,9 +49,10 @@ const mockNews = [
     source: '자동차신문',
     category: 'news',
     url: 'https://example.com/news3',
-    timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+    timestamp: new Date(now.getTime() - 4 * 60 * 60 * 1000).toISOString(),
     likes: 0,
     bookmarks: 0,
+    created_at: now.toISOString(),
   }
 ];
 
@@ -59,9 +64,10 @@ const mockCommunity = [
     source: '개발자커뮤니티',
     category: 'community',
     url: 'https://example.com/community1',
-    timestamp: new Date().toISOString(),
+    timestamp: now.toISOString(),
     likes: 0,
     bookmarks: 0,
+    created_at: now.toISOString(),
   },
   {
     id: uuidv4(),
@@ -70,9 +76,10 @@ const mockCommunity = [
     source: '취미커뮤니티',
     category: 'community',
     url: 'https://example.com/community2',
-    timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
+    timestamp: new Date(now.getTime() - 3 * 60 * 60 * 1000).toISOString(),
     likes: 0,
     bookmarks: 0,
+    created_at: now.toISOString(),
   },
   {
     id: uuidv4(),
@@ -81,9 +88,10 @@ const mockCommunity = [
     source: '맛집커뮤니티',
     category: 'community',
     url: 'https://example.com/community3',
-    timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
+    timestamp: new Date(now.getTime() - 5 * 60 * 60 * 1000).toISOString(),
     likes: 0,
     bookmarks: 0,
+    created_at: now.toISOString(),
   }
 ];
 
@@ -95,9 +103,10 @@ const mockDeals = [
     source: '쿠팡',
     category: 'deals',
     url: 'https://example.com/deals1',
-    timestamp: new Date().toISOString(),
+    timestamp: now.toISOString(),
     likes: 0,
     bookmarks: 0,
+    created_at: now.toISOString(),
   },
   {
     id: uuidv4(),
@@ -106,9 +115,10 @@ const mockDeals = [
     source: '11번가',
     category: 'deals',
     url: 'https://example.com/deals2',
-    timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+    timestamp: new Date(now.getTime() - 1 * 60 * 60 * 1000).toISOString(),
     likes: 0,
     bookmarks: 0,
+    created_at: now.toISOString(),
   },
   {
     id: uuidv4(),
@@ -117,29 +127,43 @@ const mockDeals = [
     source: 'G마켓',
     category: 'deals',
     url: 'https://example.com/deals3',
-    timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+    timestamp: new Date(now.getTime() - 6 * 60 * 60 * 1000).toISOString(),
     likes: 0,
     bookmarks: 0,
+    created_at: now.toISOString(),
   }
 ];
 
 async function insertMockData() {
   try {
     // Clear existing data
-    await supabase.from('contents').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    const { error: deleteError } = await supabase
+      .from('contents')
+      .delete()
+      .neq('id', '00000000-0000-0000-0000-000000000000');
 
-    // Insert mock data
-    const allMockData = [...mockNews, ...mockCommunity, ...mockDeals];
-    const { data, error } = await supabase.from('contents').insert(allMockData);
-
-    if (error) {
-      console.error('Error inserting mock data:', error);
+    if (deleteError) {
+      console.error('Error deleting existing data:', deleteError);
       return;
     }
 
-    console.log('Successfully inserted mock data:', data);
+    // Insert mock data
+    const allMockData = [...mockNews, ...mockCommunity, ...mockDeals];
+    const { data, error: insertError } = await supabase
+      .from('contents')
+      .insert(allMockData)
+      .select();
+
+    if (insertError) {
+      console.error('Error inserting mock data:', insertError);
+      return;
+    }
+
+    console.log('Successfully inserted mock data:', data?.length, 'items');
   } catch (error) {
     console.error('Error:', error);
+  } finally {
+    process.exit(0);
   }
 }
 

@@ -1,16 +1,7 @@
 import { Category } from '@/lib/constants';
+import { Database } from '@/lib/supabase/database.types';
 
-export interface Content {
-  id: string;
-  title: string;
-  thumbnail: string;
-  source: string;
-  category: Category;
-  url: string;
-  timestamp: string;
-  likes: number;
-  bookmarks: number;
-}
+export type Content = Database['public']['Tables']['contents']['Row'];
 
 export interface User {
   id: string;
@@ -27,4 +18,7 @@ export interface ContentCard {
   timestamp: string;
   isNew?: boolean;
   category: Category;
+  url: string;
+  likes?: number;
+  bookmarks?: number;
 }

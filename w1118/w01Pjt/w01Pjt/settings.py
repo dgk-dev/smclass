@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&l$m#00fy!t1ia+2-_k)4b!9#l@g6f)nob-*7(kwi5i1k^tw_k'
+SECRET_KEY = 'django-insecure-=(*s+x^1jbu96jmr*3d0hp%8e0$=m3gi66ayh01#fgm^-mbgz*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,9 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'students.apps.StudentsConfig',
-    'home.apps.HomeConfig',
-    'board.apps.BoardConfig',
+    'students.apps.StudentsConfig', #app추가
+    'home.apps.HomeConfig', #app추가
+    'board.apps.BoardConfig', #app추가
 ]
 
 MIDDLEWARE = [
@@ -71,6 +71,18 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#      'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': 'XE',
+#         'USER': 'ora_user',
+#         'PASSWORD': '1111',
+#         'HOST': 'localhost',
+#         'PORT': '1521',
+#     }
+
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -94,10 +106,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
-# TIME_ZONE = 'UTC'
 LANGUAGE_CODE = 'ko-kr'
 TIME_ZONE = 'Asia/Seoul'
+# LANGUAGE_CODE = 'en-us'
+# TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

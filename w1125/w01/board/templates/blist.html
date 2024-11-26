@@ -7,8 +7,15 @@
   <title>게시판</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="{% static '/css/style.css' %}">
-  <link rel="stylesheet" href="{% static '/css/notice_list.css' %}">
+  <link rel="stylesheet" href="{% static '/css/style.css'%}">
+  <link rel="stylesheet" href="/static/css/notice_list.css">
+  <style>a{text-decoration:none; color:inherit;  }</style>
+  <script>
+    if("{{dmsg}}" != ""){
+      alert("{{dmsg}}번 게시글이 삭제되었습니다.")
+      location.href="/board/blist/";
+    }
+  </script>
 </head>
 <body>
 <section>
@@ -46,24 +53,30 @@
         <th>조회수</th>
       </tr>
       <!-- 내용부분 -->
-       {% if blist %}
-        {% for board in blist%}
-          <tr>
-            <td><span class="table-notice">{{board.bno}}</span></td>
-            <td class="table-title">
-            <a href="/board/bview/{{board.bno}}/">{{board.btitle}}</a>
-            </td>
-            <td>{{board.member.nicName}}</td>
-            <td>{{board.bdate|date:'Y-m-d'}}</td> 
-            <td>{{board.bhit}}</td>
-          </tr>
-        {% endfor%}
-      {% else %}
+      {% if blist %} 
+        {% for board in blist %}
         <tr>
-          <td colsapn='5'>데이터가 없습니다.</td>
+          <td><span class="table-notice">{{board.bno}}</span></td>
+          <td class="table-title">
+            <a href="/board/bview/{{board.bno}}/">
+              {% if board.bindent > 0  %}
+                {% for i in ""|rjust:board.bindent  %}└{% endfor %}
+              {% endif %}
+              {{board.btitle}}
+            </a>
+            <!-- html주석 -->
+            {% comment %} 디장고주석 {% endcomment %}
+          </td>
+          <td>{{board.member.nicName}}</td>
+          <td>{{board.bdate|date:'Y-m-d H:i'}}</td>
+          <td>{{board.bhit}}</td>
         </tr>
+        {% endfor %}
+      {% else %}
+      <tr>
+        <td colspan='5'>데이터가 없습니다.</td>
+      </tr>
       {% endif %}
-
       
     </table>
 
@@ -76,7 +89,7 @@
     </ul>
 
     <a href="/board/bwrite/"><div class="write">쓰기</div></a>
-    <a href="/"><div class="write">HOME</div></a>
+    <a href="/"><div class="write">홈으로</div></a>
   </section>
 
 </body>

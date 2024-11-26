@@ -20,12 +20,13 @@
     <li><a href='/member/login/'>로그인</a></li>
   </ul>
   {% else %}
-  <h4>{{request.session.session_nicName}}님 환영합니다.</h4>
+  <h4>{{request.session.session_nicName}} 님 환영합니다.</h4>
   <ul>
-    <li><a href='/admin/'>admin 관리자</a></li>
     <li><a onclick='logoutBtn()'>로그아웃</a></li>
+    <li><a href='/admin/'>admin관리자</a></li>
     <li><a href='/board/blist/'>게시판리스트</a></li>
   </ul>
   {% endif %}
+  
 </body>
 </html>
